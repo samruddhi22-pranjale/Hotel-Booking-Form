@@ -1,15 +1,14 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Hotel Booking Form</title>
 
 <link rel="stylesheet" href="style.css">
 
 <!-- Google Font -->
- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
 </head>
@@ -17,22 +16,122 @@
 <body>
 
 <header>
-<nav class="navbar">
+<div class="hotel-name">ELITE INN</div>
 
-    <!-- Logo / Name -->
-    <div class="logo">ELITE INN</div>
+<!-- Booking Form Section -->
+<section class="booking">
+<div class="form-box">
+<h2>Book Your Room</h2>
 
-    <!-- Menu -->
-    <nav class="menu">
-        <li><a href="#home">Home</a>
-        <li><a href="#about">About</a>
-        <li><a href="#room">Room</a>
-        <li><a href="#reviews">Reviews</a>
-        <li><a href="#gallery">Gallery</a> 
-    </ul>
+<form id="bookingForm">
 
-</nav>
-</header>
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" required>
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" required>
+</div>
+
+<div class="form-group">
+<label>Check-in Date</label>
+<input type="date" id="checkin" required>
+</div>
+
+<div class="form-group">
+<label>Check-out Date</label>
+<input type="date" id="checkout" required>
+</div>
+
+<div class="form-group">
+<label>Room Type</label>
+<select id="roomType" required>
+<option value="">Select Room</option>
+<option value="single">Single</option>
+<option value="double">Double</option>
+<option value="suite">Suite</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Guest Count</label>
+<input type="number" id="guests" min="1" max="5" required>
+</div>
+
+<div class="form-group">
+<label>Special Requests</label>
+<textarea rows="2"></textarea>
+</div>
+
+<p id="errorMessage" style="color:red;"></p>
+<p id="successMessage" style="color:green;"></p>
+
+<button type="submit">Book Now</button>
+</form>
+</div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+const form = document.getElementById("bookingForm");
+const checkin = document.getElementById("checkin");
+const checkout = document.getElementById("checkout");
+const roomType = document.getElementById("roomType");
+const guests = document.getElementById("guests");
+const errorMessage = document.getElementById("errorMessage");
+const successMessage = document.getElementById("successMessage");
+
+// Prevent past dates
+const today = new Date().toISOString().split("T")[0];
+checkin.min = today;
+
+// Update checkout min date when checkin changes
+checkin.addEventListener("change", function() {
+    checkout.min = checkin.value;
+});
+
+
+document.querySelector("form").addEventListener("submit", function(e) {
+    let guests = document.getElementById("guests").value;
+
+    if (guests > 5) {
+        e.preventDefault();
+        document.getElementById("errorMessage").innerText =
+        "Maximum 5 guests allowed";
+    }
+});
+
+// Form validation
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    errorMessage.textContent = "";
+    successMessage.textContent = "";
+
+    if (!checkin.value || !checkout.value || !roomType.value || !guests.value) {
+        errorMessage.textContent = "Please fill in all required fields.";
+        return;
+    }
+
+    if (new Date(checkout.value) <= new Date(checkin.value)) {
+        errorMessage.textContent = "Check-out date must be after check-in date.";
+        return;
+    }
+
+    if (parseInt(guests.value) > parseInt(guests.max)) {
+        errorMessage.textContent = "Guest count exceeds room capacity.";
+        return;
+    }
+
+    successMessage.textContent = "Booking submitted successfully!";
+    form.reset();
+});
+
+});
+</script>
 
 </body>
 </html>
