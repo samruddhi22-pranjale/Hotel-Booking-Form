@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -18,7 +18,6 @@
 <header>
 <div class="hotel-name">Royal stay</div>
 
-<!-- Booking Form Section -->
 <section class="booking">
 <div class="form-box">
 <h2>Book Your Room</h2>
@@ -27,27 +26,28 @@
 
 <div class="form-group">
 <label>Full Name</label>
-<input type="text" required>
+<input type="text" id="name">
 </div>
 
 <div class="form-group">
 <label>Email</label>
-<input type="email" required>
+<input type="email" id="email">
 </div>
 
 <div class="form-group">
 <label>Check-in Date</label>
-<input type="date" id="checkin" required>
+<input type="date" id="checkin"> 
 </div>
 
 <div class="form-group">
 <label>Check-out Date</label>
-<input type="date" id="checkout" required>
+<input type="date" id="checkout">
 </div>
 
 <div class="form-group">
 <label>Room Type</label>
-<select id="roomType" required>
+<select id="roomType" >
+
 <option value="">Select Room</option>
 <option value="single">Single</option>
 <option value="double">Double</option>
@@ -77,6 +77,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 const form = document.getElementById("bookingForm");
+const nameInput = document.getElementById("name");
 const checkin = document.getElementById("checkin");
 const checkout = document.getElementById("checkout");
 const roomType = document.getElementById("roomType");
@@ -84,54 +85,51 @@ const guests = document.getElementById("guests");
 const errorMessage = document.getElementById("errorMessage");
 const successMessage = document.getElementById("successMessage");
 
-// Prevent past dates
 const today = new Date().toISOString().split("T")[0];
 checkin.min = today;
+checkout.min = today;
 
-// Update checkout min date when checkin changes
 checkin.addEventListener("change", function() {
-    checkout.min = checkin.value;
+checkout.min = checkin.value;
 });
 
-
-document.querySelector("form").addEventListener("submit", function(e) {
-    let guests = document.getElementById("guests").value;
-
-    if (guests > 5) {
-        e.preventDefault();
-        document.getElementById("errorMessage").innerText =
-        "Maximum 5 guests allowed";
-    }
-});
-
-// Form validation
 form.addEventListener("submit", function(e) {
-    e.preventDefault();
 
-    errorMessage.textContent = "";
-    successMessage.textContent = "";
+e.preventDefault();
 
-    if (!checkin.value || !checkout.value || !roomType.value || !guests.value) {
-        errorMessage.textContent = "Please fill in all required fields.";
-        return;
-    }
+errorMessage.textContent = "";
+successMessage.textContent = "";
 
-    if (new Date(checkout.value) <= new Date(checkin.value)) {
-        errorMessage.textContent = "Check-out date must be after check-in date.";
-        return;
-    }
+if(nameInput.value.trim() === ""){
+errorMessage.textContent = "Please enter your name";
+return;
+}
 
-    if (parseInt(guests.value) > parseInt(guests.max)) {
-        errorMessage.textContent = "Guest count exceeds room capacity.";
-        return;
-    }
+/* Email validation */
+if(email.value.trim() === ""){
+errorMessage.textContent = "Please enter your email";
+return;
+}
 
-    successMessage.textContent = "Booking submitted successfully!";
-    form.reset();
+if (!checkin.value || !checkout.value || !roomType.value || !guests.value) {
+errorMessage.textContent = "Please fill all required fields";
+return;
+}
+
+if (new Date(checkout.value) <= new Date(checkin.value)) {
+errorMessage.textContent = "Check-out date must be after check-in date";
+return;
+}
+
+if (parseInt(guests.value) > 5) {
+errorMessage.textContent = "Maximum 5 guests allowed";
+return;
+}
+
+successMessage.textContent = "Booking submitted successfully!";
+form.reset();
+
 });
 
 });
 </script>
-
-</body>
-</html>
