@@ -1,101 +1,112 @@
 body{
  margin:0;
  padding:0;
-  font-family:Arial,sans-serif;
-  background-image:url("Hotel.png"); 
-  background-size: cover; 
-  background-position: center; background-repeat: no repeat;
+ font-family: Arial, sans-serif;
+ background-image: url("Hotel.png"); 
+ background-size: cover; 
+ background-position: center; 
+ background-repeat: no-repeat;
 }
 
-  body{
-   margin:0; 
-   font-family: Arial, sans-serif; }
-}
-.hotel-name {
+/* Hotel Name */
+.hotel-name{
     position: absolute;
     top: 20px;
-    left:60px;
-    color:black;
-    font-size: 80px;
+    left: 60px;
+    color:white;
+    font-size:30px;
     font-weight: bold;
     letter-spacing: 2px;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
-    
+
 /* Booking Section */
 .booking{
-    height:90vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Form Box */
 .form-box{
-    width:350px;
-    margin:auto;
-    background:rgba(255,255,255,0.95);
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 350px;
+    margin: auto;
+    background: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
 .form-box h2{
-    text-align:center;
-    margin-bottom:20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
+/* Form Group */
 .form-group{
-    margin-bottom:15px;
+    margin-bottom: 15px;
 }
 
 .form-group label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:5px;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea{
-    width:100%;
-    padding:6px;
-    border:1px solid #ccc;
-    border-radius:5px;
-}
-.form-group textarea{
-    height:30px;
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
+.form-group textarea{
+    height: 30px;
+}
+
+/* Button */
 button{
-    width:100%;
-    padding:8px;
-    background:#007bff;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
+    width: 100%;
+    padding: 8px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover{
-    background:#0056b3;
+    background: #0056b3;
 }
-* Responsive Layout */
+
+/* Responsive Layout */
 @media (min-width: 768px) {
-    .form-group {
-        flex-direction: row;
+    .form-group{
+        display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    .form-group label {
+    .form-group label{
         flex: 1;
     }
 
     .form-group input,
     .form-group select,
-    .form-group textarea {
+    .form-group textarea{
         flex: 2;
     }
 }
-</style>
+
+/* Mobile adjustments */
+@media (max-width:600px){
+    .hotel-name{
+        font-size:30px;
+        left: 20px;
+        top: 10px;
+    }
+}
