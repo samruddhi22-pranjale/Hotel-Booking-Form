@@ -1,3 +1,4 @@
+
 body{
  margin:0;
  padding:0;
@@ -10,22 +11,24 @@ body{
 
 /* Hotel Name */
 .hotel-name{
-    position: absolute;
-    top: 20px;
-    left: 60px;
-    color:white;
-    font-size:30px;
+    text-align: center;
+    color: white;
+    font-size: 50px;
     font-weight: bold;
     letter-spacing: 2px;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 /* Booking Section */
+./* Booking Section */
 .booking{
     height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f4f6f9;
 }
 
 /* Form Box */
@@ -33,10 +36,17 @@ body{
     width: 90%;
     max-width: 350px;
     margin: auto;
-    background: rgba(255,255,255,0.95);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.form-box:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
 
 .form-box h2{
@@ -55,32 +65,47 @@ body{
     margin-bottom: 5px;
 }
 
+/* Inputs */
 .form-group input,
 .form-group select,
 .form-group textarea{
     width: 100%;
-    padding: 6px;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Focus effect */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0,123,255,0.3);
 }
 
 .form-group textarea{
-    height: 30px;
+    height: 40px;
 }
 
 /* Button */
 button{
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     background: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
+/* Button hover */
 button:hover{
     background: #0056b3;
+    transform: scale(1.03);
 }
 
 /* Responsive Layout */
@@ -89,6 +114,7 @@ button:hover{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 10px;
     }
 
     .form-group label{
